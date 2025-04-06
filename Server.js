@@ -1,20 +1,28 @@
+const cors = require("cors");
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const taskRoutes = require('./routes/taskRoutes');
 const authRoutes = require('./routes/authRoutes');
+
 const app = express();
 
+app.use(cors()); // ✅ Enable CORS
 app.use(bodyParser.json());
-mongoose.connect('mongodb://localhost:27017/todo_app', { useNewUrlParser: true, useUnifiedTopology: true })
+
+// ✅ Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/todo_app')
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
+// ✅ Route handlers
 app.use('/api/tasks', taskRoutes);
 app.use('/api/auth', authRoutes);
 
+// ✅ Optional default route
 app.get('/', (req, res) => {
   res.send('Welcome to the To-Do List App API!');
 });
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+// ✅ Start server (only once!)
+app.listen(3000, () => console.log("Server running on port 3000"));

@@ -7,21 +7,10 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Dependency directories
-node_modules/
-client/node_modules/
-
-# Build output
-dist/
-dist-ssr/
-client/build/
-client/dist/
-
-# Env files
-.env
-.env.local
-
-# Local config
+node_modules
+client/node_modules
+dist
+dist-ssr
 *.local
 
 # Editor directories and files
@@ -34,6 +23,3 @@ client/dist/
 *.njsproj
 *.sln
 *.sw?
-*.bak
-*.tmp
-*.swp

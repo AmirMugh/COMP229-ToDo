@@ -1,0 +1,163 @@
+/* Home.css - Dark Theme Adjustments for Home Page */
+body.dark-theme h2,
+body.dark-theme h5,
+body.dark-theme p,
+body.dark-theme .fw-semibold,
+body.dark-theme .fs-5 {
+  color: #f0f0f0 !important;
+}
+
+body.dark-theme .hero-section {
+  background-color: #0a0a0a;
+  color: #f0f0f0;
+}
+
+body.dark-theme .hero-section .btn-light {
+  background-color: #ffffff;
+  color: #000;
+}
+
+body.dark-theme .bg-light {
+  background-color: #1a1a1a !important;
+}
+
+body.dark-theme .bg-white {
+  background-color: #222 !important;
+}
+
+body.dark-theme .text-muted {
+  color: #ccc !important;
+}
+
+body.dark-theme .text-dark {
+  color: #f9f9f9 !important;
+}
+
+body.dark-theme section {
+  border-radius: 10px;
+}
+
+body.dark-theme .container,
+body.dark-theme .row {
+  background-color: transparent !important;
+}
+
+/* Light theme fallback */
+.signup-muted {
+  color: #333;
+}
+
+/* Ensure visibility in dark theme */
+body.dark-theme .signup-muted {
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme .text-link {
+  color: #66b2ff !important;
+}
+
+
+.hero-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #1a1a40;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.hero-section svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150%;
+  height: auto;
+  transform: rotate(-45deg);
+  z-index: 0;
+}
+
+.hero-section .wave-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-section > * {
+  z-index: 2;
+}
+
+.dash {
+  stroke-dasharray: 700;
+  animation: dash 15s linear infinite;
+  stroke: #FBC02E;
+}
+.dash_0 { animation-delay: 0s; }
+.dash_1 { transform: translateY(100px); animation-delay: 2.5s; }
+.dash_2 { transform: translateY(200px); animation-delay: 6s; }
+.dash_3 { transform: translateY(300px); animation-delay: 4s; }
+.dash_4 { transform: translateY(400px); animation-delay: 1s; }
+.dash_5 { transform: translateY(500px); animation-delay: 5s; }
+.dash_6 { transform: translateY(600px); animation-delay: 3s; }
+.dash_7 { transform: translateY(700px); animation-delay: 1.5s; }
+.dash_8 { transform: translateY(800px); animation-delay: 5.5s; }
+.dash_9 { transform: translateY(900px); animation-delay: 1s; }
+
+@keyframes dash {
+  0% { stroke-dashoffset: 10; stroke: #FBC02E; }
+  50% { stroke: #19D8FF; }
+  100% { stroke-dashoffset: 9800; stroke: #FBC02E; }
+}
+
+/* Starfield background layers */
+.hero-section.starfield {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-section .stars,
+.hero-section .twinkling {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  background-repeat: repeat;
+  z-index: 0;
+}
+
+.hero-section .stars {
+  background-image: url("/stars.png");
+  animation: moveStars 100s linear infinite;
+  opacity: 0.4;
+}
+
+.hero-section .twinkling {
+  background-image: url("/twinkling.png");
+  animation: moveTwinkling 200s linear infinite;
+  opacity: 0.5;
+}
+
+.hero-section .content {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes moveStars {
+  from { background-position: 0 0; }
+  to { background-position: -10000px 5000px; }
+}
+
+@keyframes moveTwinkling {
+  from { background-position: 0 0; }
+  to { background-position: -10000px 5000px; }
+}
