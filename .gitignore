@@ -37,3 +37,4 @@ client/dist/
 *.bak
 *.tmp
 *.swp
+node_modules_backup/
