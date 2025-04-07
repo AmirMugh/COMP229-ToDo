@@ -1,63 +1,124 @@
 # TeamNull To-Do List App
 
 ## Overview
-This is the first release of the TaskMasters To-Do List App, developed for COMP229 - Web Application Development. The app is a RESTful API built with Node.js, Express, and MongoDB, allowing users to manage tasks with full CRUD functionality and user authentication using JWT.
-### Features
-- User authentication (register and login) with JWT.
-- CRUD operations for tasks (Create, Read, Update, Delete).
-- MongoDB database for persistent storage.
-- Follows MVC architecture.
-### API Endpoints
+This is the first release of the TaskMasters To-Do List App, developed for COMP229 - Web Application Development. The app is a full-stack MERN application with user authentication, task management, theming, and modern frontend UI using React, Bootstrap, and Framer Motion.
 
-#### Authentication:
+---
+
+## 🌟 Features
+- JWT-based authentication system (Sign up, Login, Logout).
+- Responsive, theme-aware UI (light/dark toggle).
+- Animated transitions and page effects using Framer Motion.
+- Persistent login session stored with JWT.
+- RESTful API for managing tasks (Create, Read, Update, Delete).
+- Profile page with token-based decoding (username and registration date).
+- View all registered users (protected route).
+
+---
+
+## 🛠️ Technologies Used
+**Frontend**:
+- React + Vite
+- React Router DOM
+- Bootstrap 5
+- Framer Motion
+- JWT Decode
+- React Icons
+
+**Backend**:
+- Node.js + Express
+- MongoDB with Mongoose
+- bcryptjs for password hashing
+- jsonwebtoken for authentication
+- body-parser
+- cors
+
+---
+
+## 📂 Project Structure
 ```
-POST /api/auth/register - Register a new user (Body: { "username": "testuser", "password": "123" })
-POST /api/auth/login - Login and get a JWT token (Body: { "username": "testuser", "password": "123" })
+📦 project-root
+├── client/               # React Frontend
+│   ├── src/
+│   │   ├── components/   # Navbar, Footer, PrivateRoute
+│   │   ├── pages/        # Home, Login, Signup, Tasks, MyProfile, Users
+│   │   ├── context/      # AuthContext, ThemeContext
+│   │   ├── api/          # Axios instance
+│   │   ├── styles/       # Home.css etc.
+│   │   └── main.jsx
+│   └── public/           # SVGs, images
+├── models/               # User.js, Task.js
+├── routes/               # authRoutes.js, taskRoutes.js
+├── Server.js             # Express server and MongoDB connection
+└── README.md
 ```
-#### Tasks (Requires JWT token in Authorization: Bearer <token> header for protected routes):
+
+---
+
+## 🔐 Authentication Routes
 ```
-POST /api/tasks - Create a new task (Body: { "title": "New task" }).
-GET /api/tasks - Get all tasks.
-GET /api/tasks/:id - Get a single task by ID.
-PUT /api/tasks/:id - Update a task (Body: { "completed": true }).
-DELETE /api/tasks/:id - Delete a task.
+POST   /api/auth/register   # Register a new user
+POST   /api/auth/login      # Log in and receive JWT token
+GET    /api/auth/users      # Get all users (protected)
 ```
-#### Project Structure
-- Server.js - Main application file.
-- controllers/ - Task controller for handling API logic.
-- models/ - Mongoose models for User and Task.
-- routes/ - API routes for authentication and tasks.
-- middleware/ - JWT authentication middleware.## Setup Instructions
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/AmirMugh/COMP229-ToDo.git
-   cd COMP229-ToDo
-   ```
-2. **Install Dependencies**:
+
+## ✅ Task Routes (requires token)
+```
+POST   /api/tasks           # Add new task
+GET    /api/tasks           # List all tasks
+PUT    /api/tasks/:id       # Update task
+DELETE /api/tasks/:id       # Delete task
+```
+
+---
+
+## 🚀 Setup Instructions
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/AmirMugh/COMP229-ToDo.git
+cd COMP229-ToDo
+```
+
+### 2. Install Dependencies
+#### Backend:
 ```bash
 npm install
 ```
-3. **Set Up Environment Variables**:
-Create a .env file in the root directory.
-Add the following variables:
+##### Include the required dependencies:
+```bash
+npm install express mongoose bcryptjs jsonwebtoken cors body-parser
 ```
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-```
-Replace your_mongodb_connection_string with your MongoDB URI (e.g., from MongoDB Atlas).
-Replace your_jwt_secret with a secure secret key for JWT (e.g., a random string).
 
-Run the Application:
+#### Frontend:
+```bash
+cd client
+npm install
+```
+##### Includes:
+```bash
+npm install framer-motion react-router-dom jwt-decode bootstrap react-icons
+```
+
+### 3. Run the Project
+#### Backend:
 ```bash
 node Server.js
 ```
-The server will run on *http://localhost:3000*.
+Runs at: http://localhost:3000
 
-## Notes
-This project is the backend API for a To-Do List App. The frontend UI is planned for a future release.
-For more details, see the **External Design Document (EDD)** submitted as part of the project deliverables.
+#### Frontend:
+```bash
+cd client
+npm run dev
+```
+Runs at: http://localhost:5173
 
-## Authors
+> Note: This project uses a local MongoDB instance located at:
+> `mongodb://localhost:27017/todo_app`
+> You can modify it inside `Server.js` if needed.
+---
 
-- [@AmirMugh](https://www.github.com/AmirMugh)
-
+## 👤 Author
+- Amir Mughrabi  
+  [GitHub @AmirMugh](https://github.com/AmirMugh)

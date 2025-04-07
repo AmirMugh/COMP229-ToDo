@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'bootstrap/dist/css/bootstrap.min.css'; // ✅ Bootstrap first
-import './index.css';                          // ✅ Your styles after that
+import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap first
+import './index.css';                          // styles after that
 
 import { ThemeProvider } from "./context/ThemeContext.jsx";
 import { AuthProvider } from './context/AuthContext.jsx';

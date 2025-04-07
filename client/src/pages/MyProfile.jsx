@@ -1,23 +1,30 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useAuth } from "../context/AuthContext";
 
 const MyProfile = () => {
-  const [username, setUsername] = useState("Loading...");
+  const { user } = useAuth();
+  const [formattedDate, setFormattedDate] = useState("");
+
+  // Helper to format ISO string
+  const formatDate = (iso) => {
+    try {
+      const date = new Date(iso);
+      return date.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    } catch {
+      return "Unknown";
+    }
+  };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const payload = JSON.parse(atob(token.split(".")[1]));
-        setUsername(payload.username || "Unknown");
-      } catch (err) {
-        console.error("Invalid token format", err);
-        setUsername("Unknown");
-      }
-    } else {
-      setUsername("Not logged in");
+    if (user?.createdAt) {
+      setFormattedDate(formatDate(user.createdAt));
     }
-  }, []);
+  }, [user]);
 
   return (
     <motion.div
@@ -27,9 +34,9 @@ const MyProfile = () => {
     >
       <div className="card p-4 shadow-sm theme-card">
         <h2 className="mb-3">My Profile</h2>
-        <p><strong>Username:</strong> {username}</p>
+        <p><strong>Username:</strong> {user?.username || "Unknown"}</p>
         <p><strong>Status:</strong> Authenticated</p>
-        <p><strong>Member Since:</strong> Today 🎉</p>
+        <p><strong>Member Since:</strong> {formattedDate || "Unknown"}</p>
       </div>
     </motion.div>
   );

@@ -22,7 +22,16 @@ router.post('/login', async (req, res) => {
   if (!user || !await bcrypt.compare(req.body.password, user.password)) {
     return res.status(401).json({ message: 'Invalid credentials' });
   }
-  const token = jwt.sign({ id: user._id }, 'secret_key', { expiresIn: '1h' });
+
+  // ✅ Refetch to ensure createdAt is included
+  const freshUser = await User.findById(user._id);
+
+  const token = jwt.sign({
+    id: freshUser._id,
+    username: freshUser.username,
+    createdAt: freshUser.createdAt?.toISOString() || new Date().toISOString()
+  }, 'secret_key', { expiresIn: '1h' });
+
   res.json({ token });
 });
 
