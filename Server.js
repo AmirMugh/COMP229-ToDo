@@ -1,6 +1,6 @@
 require('dotenv').config();
-const cors = require("cors");
 const express = require('express');
+const cors = require("cors");
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const taskRoutes = require('./routes/taskRoutes');
