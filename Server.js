@@ -1,3 +1,4 @@
+require('dotenv').config();
 const cors = require("cors");
 const express = require('express');
 const mongoose = require('mongoose');
@@ -11,9 +12,10 @@ app.use(cors()); // Enable CORS
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/todo_app')
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 // Route handlers
 app.use('/api/tasks', taskRoutes);
@@ -25,4 +27,5 @@ app.get('/', (req, res) => {
 });
 
 // Start server
-app.listen(3000, () => console.log("Server running on port 3000"));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
