@@ -1,4 +1,5 @@
 require('dotenv').config();
+const app = express();
 const cors = require("cors");
 const express = require('express');
 const mongoose = require('mongoose');
@@ -6,9 +7,13 @@ const bodyParser = require('body-parser');
 const taskRoutes = require('./routes/taskRoutes');
 const authRoutes = require('./routes/authRoutes');
 
-const app = express();
 
-app.use(cors()); // Enable CORS
+const corsOptions = {
+  origin: "https://todoapp-bay-nu.vercel.app",
+  credentials: true
+};
+
+app.use(cors(corsOptions)); // Enable CORS
 app.use(bodyParser.json());
 
 // Connect to MongoDB

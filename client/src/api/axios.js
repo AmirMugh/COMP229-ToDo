@@ -1,8 +1,7 @@
-// Axios instance with base URL
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3000/api", // adjust if different
+  baseURL: "https://taskmaster-api-w0br.onrender.com/api"
 });
 
 API.interceptors.request.use((req) => {
